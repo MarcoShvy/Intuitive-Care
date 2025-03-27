@@ -29,7 +29,8 @@ public class PdfDownloadService {
 
         for (Element link : links) {
             String pdfUrl = link.absUrl("href");
-            pdfLinks.add(pdfUrl);
+            if (pdfUrl.contains("Anexo_I") || pdfUrl.contains("Anexo_II"))
+                pdfLinks.add(pdfUrl);
         }
         return pdfLinks;
     }
