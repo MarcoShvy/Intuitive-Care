@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -67,6 +68,26 @@ public class PdfDownloadService {
         return downloadedFiles;
     }
 
+    private List<File> downloadPdfsInParallel(List<String> pdfLinks) throws InterruptedException, ExecutionException {
+        ExecutorService executorService = Executors.newFixedThreadPool(4); // Controla o número de downloads simultâneos
+        List<Callable<File>> tasks = new ArrayList<>();
+
+        for (String pdfLink : pdfLinks) {
+            tasks.add(() -> (File) downloadPdfs(pdfLinks));
+        }
+
+        // Inicia os downloads em paralelo
+        List<Future<File>> futures = executorService.invokeAll(tasks);
+        List<File> downloadedFiles = new ArrayList<>();
+
+        for (Future<File> future : futures) {
+            downloadedFiles.add(future.get()); // Obtém o arquivo baixado
+        }
+
+        executorService.shutdown();
+        return downloadedFiles;
+    }
+
     private void zipFiles(List<File> files, String zipFileName) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(zipFileName);
              ZipOutputStream zipOut = new ZipOutputStream(fos)) {
@@ -86,8 +107,8 @@ public class PdfDownloadService {
             System.out.println("Arquivos compactados em: " + zipFileName);
         }
     }
-    public void executeDownloadAndZip() throws IOException {
-        List<File> downloadedFiles = downloadPdfs(findPDFLink());
+    public void executeDownloadAndZip() throws IOException, ExecutionException, InterruptedException {
+        List<File> downloadedFiles = downloadPdfsInParallel(findPDFLink());
         zipFiles(downloadedFiles, zipFilePath);
     }
 

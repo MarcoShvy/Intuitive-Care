@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 
 @RestController
@@ -21,7 +22,7 @@ public class DownloadController {
         try {
             pdfDownloadService.executeDownloadAndZip();
             return ResponseEntity.ok("Download e compactação finalizado! Disponivel em: "+ pdfDownloadService.getZipFilePath());
-        } catch (IOException e) {
+        } catch (IOException | ExecutionException | InterruptedException e) {
             return ResponseEntity.internalServerError().body("Erro ao processar" + e.getMessage());
         }
     }
