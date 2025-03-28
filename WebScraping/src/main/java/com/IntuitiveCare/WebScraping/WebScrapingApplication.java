@@ -22,6 +22,6 @@ public class WebScrapingApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(pdfDownloadService.findPDFLink());
+		pdfDownloadService.executeTest();
 	}
 }

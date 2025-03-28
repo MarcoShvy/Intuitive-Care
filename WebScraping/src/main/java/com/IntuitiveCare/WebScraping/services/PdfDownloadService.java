@@ -5,21 +5,29 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class PdfDownloadService {
 
     private final String websiteURL;
-    private static final String ZIP_FILE = "download/file.zip";
+    private final String outputDirectory;
+    private final String zipFilePath;
 
     public PdfDownloadService(AppConfig config) {
         this.websiteURL = config.getWebsiteURL();
+        this.outputDirectory = config.getOutputDir();
+        this.zipFilePath = config.getZipFilePath();
     }
 
     public List<String> findPDFLink() throws IOException {
@@ -33,5 +41,32 @@ public class PdfDownloadService {
                 pdfLinks.add(pdfUrl);
         }
         return pdfLinks;
+    }
+
+
+    private List<File> downloadPdfs(List<String> pdfLinks) throws IOException {
+        List<File> downloadedFiles = new ArrayList<>();
+        Files.createDirectories(Paths.get(outputDirectory));
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        for (String pdfLink : pdfLinks) {
+            String fileName = pdfLink.substring(pdfLink.lastIndexOf("/") + 1);
+            File file = new File(outputDirectory + fileName);
+
+            try (InputStream in = new URL(pdfLink).openStream()) {
+                Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                downloadedFiles.add(file);
+                System.out.println("Download concluído: " + file.getName());
+            } catch (IOException e) {
+                System.err.println("Erro ao baixar: " + pdfLink);
+            }
+        }
+        return downloadedFiles;
+    }
+
+    public void executeTest() throws IOException {
+        downloadPdfs(findPDFLink());
+
     }
 }
