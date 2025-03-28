@@ -11,13 +11,13 @@ import java.util.concurrent.ExecutionException;
 
 
 @RestController
-@RequestMapping("/DAMINHAFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOIAAA")
+@RequestMapping("/api")
 public class DownloadController {
 
     @Autowired
     private PdfDownloadService pdfDownloadService;
 
-    @GetMapping("/download-and-zip")
+    @GetMapping("/download-and-zip/get")
     public ResponseEntity<String> downloadAndZipFiles() {
         try {
             pdfDownloadService.executeDownloadAndZip();
