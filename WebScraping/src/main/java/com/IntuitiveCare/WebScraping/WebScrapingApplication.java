@@ -7,21 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebScrapingApplication implements CommandLineRunner {
-
-	private final PdfDownloadService pdfDownloadService;
-
-    public WebScrapingApplication(PdfDownloadService pdfDownloadService) {
-        this.pdfDownloadService = pdfDownloadService;
-    }
-
+public class WebScrapingApplication {
     public static void main(String[] args) {
 		SpringApplication.run(WebScrapingApplication.class, args);
-	}
-
-
-	@Override
-	public void run(String... args) throws Exception {
-		pdfDownloadService.executeDownloadAndZip();
 	}
 }

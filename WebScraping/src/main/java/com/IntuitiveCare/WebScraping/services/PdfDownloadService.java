@@ -90,4 +90,8 @@ public class PdfDownloadService {
         List<File> downloadedFiles = downloadPdfs(findPDFLink());
         zipFiles(downloadedFiles, zipFilePath);
     }
+
+    public String getZipFilePath() {
+        return zipFilePath;
+    }
 }
