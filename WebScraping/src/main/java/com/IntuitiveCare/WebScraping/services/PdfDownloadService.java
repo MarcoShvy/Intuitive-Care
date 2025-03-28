@@ -5,13 +5,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.stereotype.Service;
-
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,33 +44,26 @@ public class PdfDownloadService {
     }
 
 
-    private List<File> downloadPdfs(List<String> pdfLinks) throws IOException {
-        List<File> downloadedFiles = new ArrayList<>();
-        Files.createDirectories(Paths.get(outputDirectory));
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        for (String pdfLink : pdfLinks) {
+    public List<File> downloadPdfs(String pdfLink) throws IOException {
+        try {
             String fileName = pdfLink.substring(pdfLink.lastIndexOf("/") + 1);
             File file = new File(outputDirectory + fileName);
-
             try (InputStream in = new URL(pdfLink).openStream()) {
                 Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                downloadedFiles.add(file);
-                System.out.println("Download concluído: " + file.getName());
-            } catch (IOException e) {
-                System.err.println("Erro ao baixar: " + pdfLink);
+                return (List<File>) file;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-        return downloadedFiles;
     }
 
     private List<File> downloadPdfsInParallel(List<String> pdfLinks) throws InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newFixedThreadPool(4); // Controla o número de downloads simultâneos
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
         List<Callable<File>> tasks = new ArrayList<>();
 
         for (String pdfLink : pdfLinks) {
-            tasks.add(() -> (File) downloadPdfs(pdfLinks));
+            tasks.add(() -> (File) downloadPdfs(pdfLinks.toString()));
         }
 
         // Inicia os downloads em paralelo
