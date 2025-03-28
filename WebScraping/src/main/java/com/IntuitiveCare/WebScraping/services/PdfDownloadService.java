@@ -30,6 +30,11 @@ public class PdfDownloadService {
         this.zipFilePath = config.getZipFilePath();
     }
 
+    public void executeDownloadAndZip() throws Exception {
+        List<File> downloadedFiles = downloadPdfs(findPDFLink());
+        zipFiles(downloadedFiles, zipFilePath);
+    }
+
     public List<String> findPDFLink() throws IOException {
         List<String> pdfLinks = new ArrayList<>();
         Document doc = Jsoup.connect(websiteURL).get();
@@ -80,10 +85,6 @@ public class PdfDownloadService {
             }
             System.out.println("Arquivos compactados em: " + zipFileName);
         }
-    }
-    public void executeDownloadAndZip() throws Exception {
-        List<File> downloadedFiles = downloadPdfs(findPDFLink());
-        zipFiles(downloadedFiles, zipFilePath);
     }
 
     public String getZipFilePath() {
