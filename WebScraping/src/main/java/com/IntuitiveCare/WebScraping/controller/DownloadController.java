@@ -22,7 +22,7 @@ public class DownloadController {
         try {
             pdfDownloadService.executeDownloadAndZip();
             return ResponseEntity.ok("Download e compactação finalizado! Disponivel em: "+ pdfDownloadService.getZipFilePath());
-        } catch (IOException | ExecutionException | InterruptedException e) {
+        } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Erro ao processar" + e.getMessage());
         }
     }

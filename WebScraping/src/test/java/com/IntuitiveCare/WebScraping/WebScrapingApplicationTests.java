@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -42,19 +43,17 @@ class WebScrapingApplicationTests {
 
 	@Test
 	public void testDownloadPdf() throws IOException {
-		String testPdfLink = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf";
-		File downloadedFile = (File) pdfDownloaderService.downloadPdfs(testPdfLink);
+		List<String> testPdfLink = Collections.singletonList("https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf");
+		List<File> downloadedFile = pdfDownloaderService.downloadPdfs(testPdfLink);
 		assertNotNull(downloadedFile);
 	}
 
 	@Test
 	public void testZipFiles() throws Exception {
 		List<File> files = new ArrayList<>();
-		files.add(new File("${user.home}/Downloads/teste.pdf"));
-		Method zipFilesMethod = PdfDownloadService.class.getDeclaredMethod("zipFiles", List.class, String.class);
-		zipFilesMethod.setAccessible(true);
-		zipFilesMethod.invoke(pdfDownloaderService, files, "downloads/test.zip");
-		assertTrue(new File("${user.home}/Downloads/teste.zip").exists());
+		File file = new File("downloads/teste.pdf");
+		pdfDownloaderService.zipFiles(files, "downloads/Anexos.zip");
+		assertTrue(new File("Downloads/Anexos.zip").exists());
 	}
 }
 

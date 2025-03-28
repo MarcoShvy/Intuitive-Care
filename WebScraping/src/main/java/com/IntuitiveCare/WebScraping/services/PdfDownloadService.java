@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -44,41 +44,25 @@ public class PdfDownloadService {
     }
 
 
-    public List<File> downloadPdfs(String pdfLink) throws IOException {
-        try {
+    public List<File> downloadPdfs(List<String> pdfLinks) throws IOException {
+        List<File> downloadedFiles = new ArrayList<>();
+        Files.createDirectories(Paths.get(outputDirectory));
+
+        for (String pdfLink : pdfLinks) {
             String fileName = pdfLink.substring(pdfLink.lastIndexOf("/") + 1);
             File file = new File(outputDirectory + fileName);
             try (InputStream in = new URL(pdfLink).openStream()) {
                 Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                return (List<File>) file;
+                downloadedFiles.add(file);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
         }
-    }
-
-    private List<File> downloadPdfsInParallel(List<String> pdfLinks) throws InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-        List<Callable<File>> tasks = new ArrayList<>();
-
-        for (String pdfLink : pdfLinks) {
-            tasks.add(() -> (File) downloadPdfs(pdfLinks.toString()));
-        }
-
-        // Inicia os downloads em paralelo
-        List<Future<File>> futures = executorService.invokeAll(tasks);
-        List<File> downloadedFiles = new ArrayList<>();
-
-        for (Future<File> future : futures) {
-            downloadedFiles.add(future.get()); // Obtém o arquivo baixado
-        }
-
-        executorService.shutdown();
         return downloadedFiles;
     }
 
-    private void zipFiles(List<File> files, String zipFileName) throws IOException {
+
+    public void zipFiles(List<File> files, String zipFileName) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(zipFileName);
              ZipOutputStream zipOut = new ZipOutputStream(fos)) {
 
@@ -97,8 +81,8 @@ public class PdfDownloadService {
             System.out.println("Arquivos compactados em: " + zipFileName);
         }
     }
-    public void executeDownloadAndZip() throws IOException, ExecutionException, InterruptedException {
-        List<File> downloadedFiles = downloadPdfsInParallel(findPDFLink());
+    public void executeDownloadAndZip() throws Exception {
+        List<File> downloadedFiles = downloadPdfs(findPDFLink());
         zipFiles(downloadedFiles, zipFilePath);
     }
 
