@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 
 @Service
@@ -65,8 +67,27 @@ public class PdfDownloadService {
         return downloadedFiles;
     }
 
-    public void executeTest() throws IOException {
-        downloadPdfs(findPDFLink());
+    private void zipFiles(List<File> files, String zipFileName) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(zipFileName);
+             ZipOutputStream zipOut = new ZipOutputStream(fos)) {
 
+            for (File file : files) {
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    ZipEntry zipEntry = new ZipEntry(file.getName());
+                    zipOut.putNextEntry(zipEntry);
+
+                    byte[] bytes = new byte[1024];
+                    int length;
+                    while ((length = fis.read(bytes)) >= 0) {
+                        zipOut.write(bytes, 0, length);
+                    }
+                }
+            }
+            System.out.println("Arquivos compactados em: " + zipFileName);
+        }
+    }
+    public void executeDownloadAndZip() throws IOException {
+        List<File> downloadedFiles = downloadPdfs(findPDFLink());
+        zipFiles(downloadedFiles, zipFilePath);
     }
 }
