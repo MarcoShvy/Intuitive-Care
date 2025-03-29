@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c797908f-fa47-40b7-87fa-63b3059f662b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/DataHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Tabelas.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PdfReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PdfReader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
@@ -38,6 +40,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.PdfReader.executor": "Run",
+    "Python.__main__.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
