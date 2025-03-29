@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c797908f-fa47-40b7-87fa-63b3059f662b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Tabelas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PdfReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PdfReader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="c797908f-fa47-40b7-87fa-63b3059f662b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,8 +45,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mass7\Documents\projects\Intuitive-Care\Intuitive-Care\DataTransformation\data" />
       <recent name="C:\Users\mass7\Documents\projects\Intuitive-Care\Intuitive-Care\DataTransformation\src" />
+      <recent name="C:\Users\mass7\Documents\projects\Intuitive-Care\Intuitive-Care\DataTransformation\data" />
       <recent name="C:\Users\mass7\Documents\projects\Intuitive-Care\Intuitive-Care\DataTransformation2\data" />
       <recent name="C:\Users\mass7\Documents\projects\Intuitive-Care\Intuitive-Care\DataTransformation2\src" />
     </key>
@@ -98,5 +92,16 @@
       <updated>1743265883953</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
