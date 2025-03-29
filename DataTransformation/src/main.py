@@ -1,19 +1,28 @@
-from PdfReader import PdfReader
-from DataHandler import DataHandler
+import logging
+from PdfReader import extractAndConvertPDF
 
-def extract_and_convert_pdf():
-    file_path = "data/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf"
+# Configuração do logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+def main():
+    # Definindo os caminhos dos arquivos
+    input_file = "data/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf"
     output_file = "data/Tabelas.csv"
 
-    # Leitura e extração do PDF
-    pdf_reader = PdfReader(file_path, output_file)
-    extracted_df = pdf_reader.extract_tables()
+    try:
+        # Instanciando a classe PdfReader
+        pdf_reader = extractAndConvertPDF(input_file, output_file)
 
-    # Transformação dos dados (substituições)
-    transformed_df = DataHandler.transform_data(extracted_df)
+        # Extraindo e convertendo o PDF para CSV
+        logger.info("Iniciando a extração e conversão do PDF...")
+        pdf_reader.extract_and_convert_pdf()
+        logger.info(f"CSV salvo com sucesso em: {output_file}")
 
-    # Salvando o arquivo CSV
-    DataHandler.save_to_csv(transformed_df, output_file)
+    except Exception as e:
+        logger.error(f"Ocorreu um erro ao processar o PDF: {e}")
+
 
 if __name__ == "__main__":
-    extract_and_convert_pdf()
+    main()
