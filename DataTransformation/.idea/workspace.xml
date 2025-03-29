@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c797908f-fa47-40b7-87fa-63b3059f662b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/.~lock.Tabelas.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Tabelas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PdfReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PdfReader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
