@@ -104,9 +104,21 @@ git clone https://github.com/MarcoShvy/Intuitive-Care.git
 ### Instalando depedências
 
 na pasta Intuitive-Care\DataTransformation rodar:
+
 pip install -r requirements.txt
 
 
 ### Rodando Projeto
 
 No diretório raiz rodar python src/main.py
+
+
+## TESTE 3 - Banco de Dados
+Feito em PostgreSQL 17
+
+### Como Começar
+1. Clonar o repositório
+git clone https://github.com/MarcoShvy/Intuitive-Care.git
+
+2. Rodar as queries
+
