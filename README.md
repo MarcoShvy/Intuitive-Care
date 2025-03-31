@@ -145,6 +145,7 @@ com back end rodando
 cd Intuitive-Care\APITest\frontend
 npm install
 npm install axios
+npm install vite (caso necessário)
 npm run dev
 
 depois entrar na porta http://localhost:5173 e fazer sua busca
