@@ -1,9 +1,9 @@
-## DESAFIOS DE TESTE PARA INTUITIVE CARE
+# DESAFIOS DE TESTE PARA INTUITIVE CARE
 
 
-# 1- TESTE WEB SCRAPING
+## 1- TESTE WEB SCRAPING
 
-Estrutura
+### Estrutura
 O projeto está organizado nas seguintes principais pastas:
 
 config: Contém arquivos de configuração para o aplicativo.
@@ -14,27 +14,65 @@ services: Lida com a lógica central de scraping, incluindo a extração e proce
 
 src/main/java/com/IntuitiveCare/WebScraping: Diretório onde se encontra o arquivo principal WebScrapingApplication.java, que é o ponto de entrada do aplicativo.
 
-Pré-requisitos
+### Pré-requisitos
 Para rodar este projeto, você precisa de:
 
 Java 8 ou superior.
 
 Maven para gerenciamento de dependências.
 
-Como Começar
+### Como Começar
 1. Clonar o repositório
 bash
 Copiar
 Editar
 git clone https://github.com/MarcoShvy/Intuitive-Care.git
+
 2. Instalar as dependências
 Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências necessárias:
+PARA INSTALAR MVN CASO NÃO ESTEJA
+Para instalar o Maven e configurá-lo no PATH no seu sistema, siga as etapas abaixo, dependendo do seu sistema operacional.
 
-bash
-Copiar
-Editar
+1. Baixar o Maven
+Primeiro, baixe a versão mais recente do Maven:
+
+Acesse a página oficial de downloads do Maven: Maven Downloads.
+
+Baixe o arquivo apache-maven-x.x.x-bin.zip (onde x.x.x é a versão mais recente).
+
+Extraia o arquivo para um diretório de sua escolha (por exemplo, C:\Program Files\Apache\Maven no Windows ou /usr/local/apache-maven no Linux/macOS).
+
+2. Configurar o Maven no PATH
+No Windows:
+Definir a variável de ambiente MAVEN_HOME:
+
+Clique com o botão direito no Menu Iniciar e selecione Sistema.
+
+Clique em Configurações avançadas do sistema.
+
+Selecione Variáveis de Ambiente.
+
+Em Variáveis do sistema, clique em Novo.
+
+Nome da variável: MAVEN_HOME
+
+Valor da variável: Caminho do diretório Maven (ex.: C:\Program Files\Apache\Maven).
+
+Adicionar o Maven ao PATH:
+
+Na mesma janela de Variáveis de Ambiente, encontre a variável Path na seção Variáveis do sistema e clique em Editar.
+
+Adicione o caminho para a pasta bin dentro do diretório Maven (ex.: C:\Program Files\Apache\Maven\apache-maven-x.x.x\bin).
+
+Verificar a instalação:
+
+Abra o Prompt de Comando e digite:
+
+mvn -version
+
+
 mvn install
-3. Rodando o Aplicativo
+4. Rodando o Aplicativo
 Execute o aplicativo principal com o comando:
 
 bash
