@@ -29,8 +29,6 @@ Editar
 git clone https://github.com/MarcoShvy/Intuitive-Care.git
 
 2. Instalar as dependências
-Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências necessárias:
-PARA INSTALAR MVN CASO NÃO ESTEJA
 Para instalar o Maven e configurá-lo no PATH no seu sistema, siga as etapas abaixo, dependendo do seu sistema operacional.
 
 1. Baixar o Maven
@@ -70,14 +68,13 @@ Abra o Prompt de Comando e digite:
 
 mvn -version
 
+entrar no diretório do projeto e rodar:
 
 mvn install
+
 4. Rodando o Aplicativo
 Execute o aplicativo principal com o comando:
 
-bash
-Copiar
-Editar
 mvn spring-boot:run
-4. Configuração
+### 4. Configuração
 As configurações podem ser modificadas na pasta config, onde diversos parâmetros relacionados aos alvos de scraping estão definidos.
