@@ -8,7 +8,6 @@ class OperadoraService:
 
     def buscar_operadoras(self, termo: str, limite: int = 10) -> dict:
         try:
-            # Garante que o limite é um inteiro válido
             limite = max(1, min(limite, 10))
             resultados = self.model.buscar(termo, limite)
 
@@ -21,5 +20,6 @@ class OperadoraService:
         except Exception as e:
             return {
                 'success': False,
-                'error': str(e)
+                'error': str(e),
+                'data': []
             }

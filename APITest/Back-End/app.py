@@ -11,7 +11,11 @@ def create_app():
 
     # Registra o blueprint
     app.register_blueprint(api_blueprint)
-    CORS(app)
+    CORS(app, resources={
+        r"/buscar_operadoras": {
+            "origins": ["http://localhost:*", "http://127.0.0.1:*"]
+        }
+    })
 
     return app
 

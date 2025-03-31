@@ -18,23 +18,30 @@ def buscar_operadoras():
 
         try:
             limite = int(request.args.get('limite', 10))
-            limite = max(1, min(limite, 100))  # Limita entre 1 e 100
+            limite = max(1, min(limite, 100))
         except ValueError:
             limite = 10
 
         resultados = service.buscar_operadoras(termo, limite)
 
+        if not resultados['success']:
+            return jsonify({
+                'success': False,
+                'error': resultados.get('error', 'Erro na busca'),
+                'data': []
+            }), 400
+
         return jsonify({
             'success': True,
-            'count': len(resultados),
+            'count': len(resultados['data']),
             'limit': limite,
             'term': termo,
-            'data': resultados
+            'data': resultados['data']
         })
 
     except Exception as e:
         return jsonify({
             'success': False,
-            'error': str(e),
+            'error': f'Erro interno: {str(e)}',
             'data': []
         }), 500
