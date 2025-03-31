@@ -103,6 +103,7 @@ git clone https://github.com/MarcoShvy/Intuitive-Care.git
 
 ### Instalando depedências
 
+na pasta Intuitive-Care\DataTransformation rodar:
 pip install -r requirements.txt
 
 
