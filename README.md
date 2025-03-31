@@ -75,3 +75,37 @@ Execute o aplicativo principal com o comando:
 mvn spring-boot:run
 ### 4. Configuração
 As configurações podem ser modificadas na pasta config, onde diversos parâmetros relacionados aos alvos de scraping estão definidos.
+
+## 2 - TESTE TRANSFORMAÇÃO DE DADOS
+
+### Projeto de Transformação de Dados
+Este projeto faz parte do repositório IntuitiveCare e tem como objetivo realizar a transformação de dados, preparando-os para análise ou integração com outros sistemas. O código está organizado de maneira modular, facilitando a manutenção e expansão.
+
+Estrutura
+O projeto está organizado nas seguintes pastas principais:
+
+data: Contém os dados de entrada e saída utilizados no processo de transformação.
+
+src: Contém o código fonte da aplicação, incluindo classes para manipulação e transformação dos dados.
+
+tests: Contém os testes automatizados que garantem a integridade e o bom funcionamento do sistema.
+
+### Para rodar este projeto, você precisa de:
+
+Python 3.x
+
+Dependências do projeto, que podem ser instaladas com o pip.
+
+
+### Como Começar
+1. Clonar o repositório
+git clone https://github.com/MarcoShvy/Intuitive-Care.git
+
+### Instalando depedências
+
+pip install -r requirements.txt
+
+
+### Rodando Projeto
+
+No diretório raiz rodar python src/main.py
