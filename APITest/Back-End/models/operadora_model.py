@@ -41,6 +41,4 @@ class OperadoraModel:
             .fillna("").to_dict('records')
         )
 
-
-
         return resultados
