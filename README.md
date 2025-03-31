@@ -122,3 +122,34 @@ git clone https://github.com/MarcoShvy/Intuitive-Care.git
 
 2. Rodar as queries
 
+
+## TESTE 4 - Teste API
+
+1. Clonar o repositório
+git clone https://github.com/MarcoShvy/Intuitive-Care.git
+
+### Instalando depedências
+
+na pasta Intuitive-Care\APITest\Back-end rodar:
+
+pip install -r requirements.txt
+
+2. rodar back-end com
+cd Intuitive-Care\APITest\Back-End\
+python app.py
+
+com back end rodando
+
+3. rodar front-end com
+
+cd Intuitive-Care\APITest\frontend
+npm install
+npm install axios
+npm run dev
+
+depois entrar na porta http://localhost:5173 e fazer sua busca
+
+
+### LINK PARA COLLECTION NO POSTMAN
+https://www.postman.com/marcoshvy/workspace/intuitive/collection/30366005-eb203fdf-9325-4907-a612-55705bd67619?action=share&creator=30366005
+

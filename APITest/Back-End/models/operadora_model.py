@@ -38,9 +38,7 @@ class OperadoraModel:
             df_temp[df_temp['Relevancia'] > 50]
             .sort_values('Relevancia', ascending=False)
             .head(limite)  # Aqui aplicamos o limite
-            .to_dict('records')
+            .fillna("").to_dict('records')
         )
-
-
 
         return resultados

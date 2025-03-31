@@ -24,13 +24,6 @@ def buscar_operadoras():
 
         resultados = service.buscar_operadoras(termo, limite)
 
-        if not resultados['success']:
-            return jsonify({
-                'success': False,
-                'error': resultados.get('error', 'Erro na busca'),
-                'data': []
-            }), 400
-
         return jsonify({
             'success': True,
             'count': len(resultados['data']),

@@ -20,6 +20,5 @@ class OperadoraService:
         except Exception as e:
             return {
                 'success': False,
-                'error': str(e),
-                'data': []
+                'error': str(e)
             }
