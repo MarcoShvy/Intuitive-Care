@@ -23,9 +23,6 @@ Maven para gerenciamento de dependências.
 
 ### Como Começar
 1. Clonar o repositório
-bash
-Copiar
-Editar
 git clone https://github.com/MarcoShvy/Intuitive-Care.git
 
 2. Instalar as dependências
